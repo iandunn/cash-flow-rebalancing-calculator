@@ -1,0 +1,28 @@
+.account .allocation-type-account {
+	margin-top: 1em;
+}
+
+/* maybe adjust breakpoint once more tweaks made and have idea of final layout. might need another 50px or so. */
+@media screen and ( min-width: 1000px ) {
+	.account {
+		display: grid;
+		grid-template-columns: 50% 50%;
+		grid-template-areas:
+			"header header"
+			"funds allocation";
+		grid-column-gap: 20px;
+	}
+
+	.account h3 {
+		grid-area: header;
+	}
+
+	.account .funds {
+		grid-area: funds;
+	}
+
+	.allocation-type-account {
+		grid-area: allocation;
+		margin-top: 0;
+	}
+}

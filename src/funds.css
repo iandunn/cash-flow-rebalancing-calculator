@@ -1,0 +1,24 @@
+.funds thead .fund-amount {
+	min-width: 110px; /* is there smarter way to set this? */
+}
+
+.funds thead .fund-allocation-tags {
+	max-width: 100px;
+}
+
+.funds .amount-cell input {
+	/*
+	make this look better
+	border-color: var( --table-cell-background-color );
+	border-radius: 5px;*/
+}
+
+.funds .allocation-tag {
+	display: inline-block;
+	background-color: #c6f1ff;
+	border-radius: 5px;
+	padding: 5px;
+	margin-top: 5px;
+	margin-right: 5px;
+	/*	wtf why line height messed up? */
+}

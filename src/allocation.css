@@ -1,0 +1,11 @@
+.allocation-type-account h4 {
+	margin-top: 0;
+}
+
+.balanced {
+	color: green;
+}
+
+.drifted {
+	color: red;
+}
