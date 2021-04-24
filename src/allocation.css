@@ -9,3 +9,7 @@
 .drifted {
 	color: red;
 }
+
+input.target-allocation {
+	display: inline-block;
+}

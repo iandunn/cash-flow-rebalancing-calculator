@@ -2,7 +2,7 @@
 	margin-top: 1em;
 }
 
-/* maybe adjust breakpoint once more tweaks made and have idea of final layout. might need another 50px or so. */
+/* todo maybe adjust breakpoint once more tweaks made and have idea of final layout. might need another 50px or so. */
 @media screen and ( min-width: 1000px ) {
 	.account {
 		display: grid;

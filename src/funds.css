@@ -1,5 +1,5 @@
 .funds thead .fund-amount {
-	min-width: 110px; /* is there smarter way to set this? */
+	min-width: 110px; /* todo is there smarter way to set this? */
 }
 
 .funds thead .fund-allocation-tags {
@@ -7,7 +7,7 @@
 }
 
 .funds .amount-cell input {
-	/*
+	/*todo
 	make this look better
 	border-color: var( --table-cell-background-color );
 	border-radius: 5px;*/
@@ -20,5 +20,5 @@
 	padding: 5px;
 	margin-top: 5px;
 	margin-right: 5px;
-	/*	wtf why line height messed up? */
+	/*	todo wtf why line height messed up? */
 }

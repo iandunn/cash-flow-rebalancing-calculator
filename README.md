@@ -6,14 +6,16 @@
 
 This calculator helps you [rebalance](https://www.bogleheads.org/wiki/Rebalancing) an investment portfolio using the 'buy and hold' strategy.
 
-[//]: # ( https://investor.vanguard.com/investing/portfolio-management/rebalance is also good, link to both? )
-[//]: # ( or https://investornews.vanguard/rebalancing/ )
+<!--
+https://investor.vanguard.com/investing/portfolio-management/rebalance is also good, link to both?
+https://investornews.vanguard/rebalancing/
+-->
 
 [![Screenshot of interface](.github/screenshot.png?raw=true)](.github/screenshot.png?raw=true)
 
 ## Features
 
-* handles multple accounts. shows you the allocation for each, and the allocation of the total portfolio
+* handles multiple accounts. shows you the allocation for each, and the allocation of the total portfolio
 * tagging so can examine multiple . e.g., domestic vs foreign, stocks vs bonds, socially-responsible vs amoral.
 
 ## Instructions
