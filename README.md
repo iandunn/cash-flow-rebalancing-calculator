@@ -1,12 +1,16 @@
-# 'Buy and Hold' Rebalancing Calculator
+# Cash Flow Rebalancing Calculator
+
+rename everything to "cash flow rebalancing calculator"
 
 **_This is still in early development, and not ready for real-world use yet._**
 
 ----
 
-This calculator helps you [rebalance](https://www.bogleheads.org/wiki/Rebalancing) an investment portfolio using the 'buy and hold' strategy.
+This calculator helps you [rebalance](https://www.bogleheads.org/wiki/Rebalancing) an investment portfolio using the cash flow rebalancing strategy[link].
 
 <!--
+https://canadiancouchpotato.com/2014/06/23/rebalancing-with-cash-flows/ 
+
 https://investor.vanguard.com/investing/portfolio-management/rebalance is also good, link to both?
 https://investornews.vanguard/rebalancing/
 -->
@@ -20,9 +24,9 @@ https://investornews.vanguard/rebalancing/
 
 ## Instructions
 
-It's a simple interactive web page, so [you can use it right now](https://iandunn.github.io/buy-and-hold-rebalancing-calculator/).
+It's a simple interactive web page, so [you can use it right now](https://iandunn.github.io/cash-flow-rebalancing-calculator/).
 
-Instructions are in the calculator itself, so that they're easy to access while using it. [Open the calculator](https://iandunn.github.io/buy-and-hold-rebalancing-calculator/) to read them.
+Instructions are in the calculator itself, so that they're easy to access while using it. [Open the calculator](https://iandunn.github.io/cash-flow-rebalancing-calculator/) to read them.
 
 ## Privacy
 
@@ -34,8 +38,8 @@ All of your data is stored in your browser, and never sent to any server.
 
 ## Contributing
 
-* `git clone https://github.com/iandunn/buy-and-hold-rebalancing-calculator.git`
-* `cd buy-and-hold-rebalancing-calculator`
+* `git clone https://github.com/iandunn/cash-flow-rebalancing-calculator.git`
+* `cd cash-flow-rebalancing-calculator`
 * `npm install`
 * `npm run watch`
 * `open http://localhost:3000/`

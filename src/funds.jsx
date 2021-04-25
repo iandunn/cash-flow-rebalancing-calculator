@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { AccountContext }       from './contexts.js';
+import React, { useContext }                 from 'react';
+import CurrencyInput                         from 'react-currency-input-field';
+import { AccountContext, currencyFormatter } from './utilities.jsx';
 import './funds.css';
 
 export function Funds() {
 	const { cash, funds } = useContext( AccountContext );
 	let totalWithoutCash = 0;
 
-//asdf asd
 	return (
 		<div className="funds">
 			<h4>Funds</h4>
@@ -26,15 +26,16 @@ export function Funds() {
 						<td>Cash</td>
 
 						<td>
-							{/* todo make this use Fund for DRYness? */ }
-							$
-							<input
-								type="number"
-								value={ cash }
-								min="0"
+							<CurrencyInput
+								allowDecimals={ false }
+								allowNegativeValue={ false }
+								disableAbbreviations={ true }
+								prefix="$"
+								name="cach"
 								placeholder="0"
+								value={ 500 }
 								size="7"
-								onChange={ value => value }
+								onValueChange={ ( value, name ) => value }
 							/>
 						</td>
 
@@ -58,6 +59,7 @@ export function Funds() {
 								amount={ amount }
 								tags={ tags }
 							/>
+							//* todo want to format amount, but also need it to be valid `number` input */}
 						);
 					} ) }
 				</tbody>
@@ -65,7 +67,7 @@ export function Funds() {
 				<tfoot>
 					<tr>
 						<th>Total</th>
-						<th>${ totalWithoutCash }</th>
+						<th>{ currencyFormatter.format( totalWithoutCash ) }</th>
 						<th></th>
 					</tr>
 
@@ -89,9 +91,18 @@ function Fund( { symbol, amount, tags } ) {
 			<td>{ symbol }</td>
 
 			<td className="amount-cell">
+				<CurrencyInput
+					allowDecimals={ false }
+					allowNegativeValue={ false }
+					disableAbbreviations={ true }
+					prefix="$"
+					name="input-name"
+					placeholder="0"
+					value={ amount }
+					size="7"
+					onValueChange={ ( value, name ) => value }
+				/>
 				{/* todo make onchange save to local storage */ }
-				$
-				<input type="number" value={ amount } placeholder="0" size="7" onChange={ value => value } />
 			</td>
 
 			<td>

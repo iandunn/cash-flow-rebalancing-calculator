@@ -75,12 +75,16 @@ export const exampleData = {
 					'amount' : 150,
 					'tags'   : ['domestic', 'stock']
 				},
+
+				{
+					'symbol' : 'BND',
+					'amount' : 50,
+					'tags'   : ['domestic', 'bond']
+				},
 			],
 
 			'targetAllocations' : {
-				'domestic'             : 70,
-				'international'        : 30,
-				'socially-responsible' : 15,
+				'domestic'             : 100,
 				'stock'                : 85,
 				'bond'                 : 15
 				// todo make this different than the roth/total allocation - is hsa realistic example of that?
@@ -91,10 +95,10 @@ export const exampleData = {
 
 	// todo use this as default allocation when adding new account
 	'portfolioTargetAllocations' : {
-		'domestic'      : 80,
-		'international' : 20,
-		'esg'           : 10,
-		'stock'         : 90,
-		'bond'          : 10
+		'domestic'             : 80,
+		'international'        : 20,
+		'socially-responsible' : 10,
+		'stock'                : 90,
+		'bond'                 : 10
 	}
 };

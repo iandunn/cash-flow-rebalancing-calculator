@@ -1,6 +1,12 @@
-import React, { useContext }    from 'react';
-import { AccountContext }       from './contexts.js';
+import React, { useContext }                 from 'react';
+import { AccountContext, currencyFormatter } from './utilities.jsx';
 import './allocation.css';
+
+// The percentage above which a portfolio is significantly out of balance
+// `5` according to vanguard -- https://investornews.vanguard/rebalancing/
+// `3` according to betterment, in order to trigger "sell/buy" rebalancing -- https://www.betterment.com/resources/portfolio-drift-rebalancing/
+const DRIFT_THRESHOLD = 5;
+{/* maybe just make it 1% since this is cash-flow strategy */ }
 
 
 export function Allocation( { children, type, funds = null, targetAllocations = null } ) {
@@ -35,17 +41,15 @@ export function Allocation( { children, type, funds = null, targetAllocations = 
 						{/* maybe include columns for total amount and target amount?
 						or is that only useful for debugging? */}
 						<th>Drift</th>
+						{/* todo maybe change ^ to be $50 (3.2), and then make below field action like `Buy $25`,
+						 but that'd need the lazy optimum algorithm%*/}
 						<th>Difference</th>
 					</tr>
 				</thead>
 
-				{/* todo show in green if drift < 3%. or maybe 5% (vanguard recommendation)
-				 orange if above - make configurable? maybe just make it 1% since this is buy-and-hold strategy */ }
-
 				<tbody>
 					{ Object.keys( currentAllocation ).length && Object.entries( currentAllocation ).map( ( [ name, amount ], index ) => {
-						//console.log( name, amount );
-						const targetAllocation = targetAllocations[ name ]; //todo
+						const targetAllocation = targetAllocations[ name ];
 						const actualAllocation = ( amount / totalWithoutCash * 100 ).toFixed( 1 );
 
 						return (
@@ -59,11 +63,6 @@ export function Allocation( { children, type, funds = null, targetAllocations = 
 							/>
 						);
 					} ) }
-					{/*<TagRow name="Domestic" target={ 80 } actual={ 86 } difference={ 500 } />
-					<TagRow name="International" target={ 20 } actual={ 14 } difference={ 100 } />
-					<TagRow name="Socially Responsible" target={ 10 } actual={ 12 } difference={ 100 } />
-					<TagRow name="Stock" target={ 90 } actual={ 92 } difference={ 800 } />
-					<TagRow name="Bonds" target={ 10 } actual={ 8 } difference={ - 800 } />*/}
 				</tbody>
 			</table>
 		</div>
@@ -93,15 +92,14 @@ function getCurrentAllocation( funds, targetAllocation ) {
 		} );
 	} );
 
-	//console.log(currentAllocation);
-
-	// combine it w/ target alloc
+	// combine it w/ target alloc - wait, why? i thought i needed too, but then didn't
+	// only needed for portolio alloc, not account alloc? no
 
 	return currentAllocation;
 }
 
 function TagRow( { name, target, actual, drift, difference } ) {
-	const className = drift >= 5 || drift <= - 5 ? 'drifted' : 'balanced';
+	const className = drift >= DRIFT_THRESHOLD || drift <= - DRIFT_THRESHOLD ? 'drifted' : 'balanced';
 
 	return (
 		<tr>
@@ -119,7 +117,7 @@ function TagRow( { name, target, actual, drift, difference } ) {
 			</td>
 			<td className={ className }>{ actual }%</td>
 			<td className={ className }>{ drift }%</td>
-			<td className={ className }>${ difference }</td>
+			<td className={ className }>{ currencyFormatter.format( difference ) }</td>
 		</tr>
 	);
 }

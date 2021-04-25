@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { MainContext, AccountContext }       from './contexts.js';
-import { Account }           from './account';
+import React, { useContext }           from 'react';
+import { MainContext, AccountContext } from './utilities.jsx';
+import { Account }                     from './account';
 import './account-groups.css';
 
 export function AccountGroups() {

@@ -1,6 +1,7 @@
-import React          from 'react';
-import { Allocation } from './allocation';
-import { Funds }      from './funds';
+import React             from 'react';
+import { Allocation }    from './allocation';
+import { Funds }         from './funds';
+import { ErrorBoundary } from './utilities';
 import './account.css';
 
 export function Account( { name } ) {
@@ -8,11 +9,15 @@ export function Account( { name } ) {
 		<div className="account">
 			<h3>{ name }</h3>
 
-			<Funds />
+			<ErrorBoundary>
+				<Funds />
+			</ErrorBoundary>
 
-			<Allocation type="account">
-				<h4>Account Allocation</h4>
-			</Allocation>
+			<ErrorBoundary>
+				<Allocation type="account">
+					<h4>Account Allocation</h4>
+				</Allocation>
+			</ErrorBoundary>
 		</div>
 	);
 }

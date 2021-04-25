@@ -4,7 +4,7 @@
 - [ ] In-app instructions/docs
 - [ ] Get GitHub Page working - maybe convert to HTM instead of dealing w/ build tools
 - [x] Basic README
-- [ ] Render components from example data
+- [x] Render components from example data
 - [ ] Allow changing userdata
 
 
@@ -29,3 +29,4 @@
 * post it on Bogleheads etc to promote it?
 * show pie charts for allocations, but maybe that's just fluff?
 * add react errorboundry to catch fatals
+* make drift user-configurable
