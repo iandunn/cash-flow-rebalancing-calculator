@@ -6,12 +6,15 @@ export const MainContext    = createContext( {} );
 // todo should pass `exampleData` instead of empty obj?
 export const AccountContext = createContext( {} );
 
-export const currencyFormatter = new Intl.NumberFormat( 'en-US', {
-	style: 'currency',
-	currency: 'USD',
-	maximumFractionDigits: 0,
-} );
-// todo auto detect user language at least. might need UI setting to provide currency
+export const currencyFormatter = new Intl.NumberFormat(
+	navigator.language,
+	{
+		style: 'currency',
+		currency: 'USD',
+		// todo can detect automatically based on locale? if not add UI setting
+		maximumFractionDigits: 0,
+	}
+);
 
 export class ErrorBoundary extends React.Component {
 	constructor( props ) {
