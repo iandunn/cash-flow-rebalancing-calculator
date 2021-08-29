@@ -13,43 +13,43 @@ export const exampleData = {
 				{
 					'symbol' : 'FXAIX',
 					'amount' : 500,
-					'tags'   : [ 'domestic', 'stock' ]
+					'tags'   : [ 'domestic', 'stock', 'mutual fund' ]
 				},
 
 				{
 					'symbol' : 'VTI',
 					'amount' : 5500,
-					'tags'   : [ 'domestic', 'stock' ]
+					'tags'   : [ 'domestic', 'stock', 'ETF' ]
 				},
 
 				{
 					'symbol' : 'ESGV',
 					'amount' : 1000,
-					'tags'   : [ 'domestic', 'stock', 'socially-responsible' ]
+					'tags'   : [ 'domestic', 'stock', 'socially-responsible', 'ETF' ]
 				},
 
 				{
 					'symbol' : 'BND',
 					'amount' : 500,
-					'tags'   : [ 'domestic', 'bond' ]
+					'tags'   : [ 'domestic', 'bond', 'ETF' ]
 				},
 
 				{
 					'symbol' : 'VXUS',
 					'amount' : 2000,
-					'tags'   : ['international', 'stock' ]
+					'tags'   : ['international', 'stock', 'ETF' ]
 				},
 
 				{
 					'symbol' : 'VSGX',
 					'amount' : 200,
-					'tags'   : [ 'international', 'stock', 'socially-responsible' ]
+					'tags'   : [ 'international', 'stock', 'socially-responsible', 'ETF' ]
 				},
 
 				{
 					'symbol' : 'FSPSX',
 					'amount' : 300,
-					'tags'   : [ 'international', 'stock' ]
+					'tags'   : [ 'international', 'stock', 'mutual fund' ]
 				},
 
 				// todo update amounts, etc once this is working. probably have 10k total in account asd asd
@@ -73,13 +73,13 @@ export const exampleData = {
 				{
 					'symbol' : 'VTI',
 					'amount' : 150,
-					'tags'   : ['domestic', 'stock']
+					'tags'   : [ 'domestic', 'stock', 'ETF' ]
 				},
 
 				{
 					'symbol' : 'BND',
 					'amount' : 50,
-					'tags'   : ['domestic', 'bond']
+					'tags'   : [ 'domestic', 'bond', 'ETF' ]
 				},
 			],
 

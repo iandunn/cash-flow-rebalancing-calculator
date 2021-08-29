@@ -32,4 +32,4 @@
 * post it on Bogleheads etc to promote it?
 * show pie charts for allocations, but maybe that's just fluff?
 * add react errorboundry to catch fatals
-* make drift user-configurable
+* make `DRIFT_THRESHOLD` user-configurable

@@ -5,9 +5,8 @@ import './allocation.css';
 // The percentage above which a portfolio is significantly out of balance
 // `5` according to vanguard -- https://investornews.vanguard/rebalancing/
 // `3` according to betterment, in order to trigger "sell/buy" rebalancing -- https://www.betterment.com/resources/portfolio-drift-rebalancing/
+// todo maybe just make it 1% since this is cash-flow strategy?
 const DRIFT_THRESHOLD = 5;
-{/* maybe just make it 1% since this is cash-flow strategy */ }
-
 
 export function Allocation( { children, type, funds = null, targetAllocations = null } ) {
 	if ( 'account' === type && null === targetAllocations && null === funds ) {
@@ -49,17 +48,23 @@ export function Allocation( { children, type, funds = null, targetAllocations = 
 
 				<tbody>
 					{ Object.keys( currentAllocation ).length && Object.entries( currentAllocation ).map( ( [ name, amount ], index ) => {
-						const targetAllocation = targetAllocations[ name ];
-						const actualAllocation = ( amount / totalWithoutCash * 100 ).toFixed( 1 );
+						const actualAllocation = ( amount / totalWithoutCash * 100 );
+						const hasTarget        = undefined !== targetAllocations[ name ]; // sometimes you want to know the percent, but don't have a target in mind
+						// todo also need to test for empty string once we start accepting user input, right?
+						//     they may set one, then delete it, and that should be the same as never having set it
+						const targetAllocation = hasTarget ? targetAllocations[ name ] : actualAllocation;
+						const drift            = targetAllocation - actualAllocation;
+						const difference       = ( totalWithoutCash * targetAllocation / 100 ) - amount;
 
 						return (
 							<TagRow
 								key={ index }
-								name={ name } /* + ` - $${amount}` } */
-								target={ targetAllocation }
-								actual={ actualAllocation }
-								drift={ ( targetAllocation - actualAllocation ).toFixed( 1 ) }
-								difference={ ( totalWithoutCash * targetAllocation / 100 ) - amount }
+								type={ type }
+								name={ name }
+								targetPercent={ hasTarget ? targetAllocation : '' }
+								actualPercent={ actualAllocation }
+								drift={ drift }
+								difference={ difference }
 							/>
 						);
 					} ) }
@@ -98,26 +103,37 @@ function getCurrentAllocation( funds, targetAllocation ) {
 	return currentAllocation;
 }
 
-function TagRow( { name, target, actual, drift, difference } ) {
+function TagRow( { type, name, targetPercent, actualPercent, drift, difference } ) {
 	const className = drift >= DRIFT_THRESHOLD || drift <= - DRIFT_THRESHOLD ? 'drifted' : 'balanced';
 
 	return (
 		<tr>
 			<td>{ name }</td>
+
 			<td>
 				<input
 					className="target-allocation"
 					type="number"
-					value={ target }
+					value={ targetPercent }
 					onChange={ value => value }
 					min={ 0 }
 					size={ 4 }
 				/>
 				%
 			</td>
-			<td className={ className }>{ actual }%</td>
-			<td className={ className }>{ drift }%</td>
-			<td className={ className }>{ currencyFormatter.format( difference ) }</td>
+
+			<td className={ className }>
+				{ actualPercent.toFixed( 1 ) }%
+				{/*- { currencyFormatter.format( amount ) }*/}
+			</td>
+
+			<td className={ className }>
+				{ drift.toFixed( 1 ) }%
+			</td>
+
+			<td className={ className }>
+				{ currencyFormatter.format( difference ) }
+			</td>
 		</tr>
 	);
 }
