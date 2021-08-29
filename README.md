@@ -20,7 +20,7 @@ https://investornews.vanguard/rebalancing/
 ## Features
 
 * handles multiple accounts. shows you the allocation for each, and the allocation of the total portfolio
-* tagging so can examine multiple . e.g., domestic vs foreign, stocks vs bonds, socially-responsible vs amoral.
+* assign tags to each investment, so can examine along multiple factors . e.g., domestic vs foreign, stocks vs bonds, socially-responsible vs amoral.
 
 ## Instructions
 

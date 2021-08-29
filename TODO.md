@@ -1,11 +1,12 @@
 # MVP
 
 - [x] Sketch out static markup for parity with spreadsheet
-- [ ] In-app instructions/docs
-- [ ] Get GitHub Page working - maybe convert to HTM instead of dealing w/ build tools
 - [x] Basic README
 - [x] Render components from example data
-- [ ] Allow changing userdata
+- [ ] Allow changing inputs, adding funds/accounts
+- [ ] Add in-app instructions/docs
+- [ ] Get GitHub Page working - maybe convert to HTM instead of dealing w/ build tools. Still want HMR as addon, though.
+
 
 
 # Future - High Impact
@@ -16,11 +17,13 @@
 * link fund symbols to a page on fidelity.com or somewhere with data about them
 * add display order for each tag, rather than sorting alphabetically. want to compare domestic vs intl side-by-side
 * calculate things automatically rather than making the user do it, ala http://optimalrebalancing.tk 
+    * see `lazy-optimal.js` as reference
 * setup github action to automatically rebuild GH Pages branch - probably existing one you can use instead of writing from scratch - or convert to HTM so don't have to deal w/ build tool crap in the first place
 * make it easy to setup accounts+funds for first time just by copy/pasting from fidelity/vanguard/etc
 	* also make it easy to _update_ them that way
 
 # Future - Low Impact
+
 
 * ability to have account allocation for tag that isn't assigned to any funds currently
 * make calculations more sophisticated, ala http://optimalrebalancing.tk/explanation.html ?

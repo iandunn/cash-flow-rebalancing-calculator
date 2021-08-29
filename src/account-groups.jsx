@@ -16,7 +16,7 @@ export function AccountGroups() {
 				);
 			} ) }
 
-			<button>
+			<button class="add-account-group">
 				Add Account
 			</button>
 		</div>

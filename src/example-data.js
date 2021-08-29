@@ -2,7 +2,7 @@ export const exampleData = {
 	'accounts' : [
 		{
 			// todo might need to add an ID so can rename without losing connection to it? maybe not",
-			// todo might need to make accounts an associative object instead of array so can access accounds
+			// todo might need to make accounts an associative object instead of array so can access accounts
 			// directly. same for `funds`",
 			'name' : 'Roth IRA',
 			'cash' : 500,

@@ -107,8 +107,7 @@ function Fund( { symbol, amount, tags } ) {
 
 			<td>
 				{/* todo
-				 there's probably an npm package that doesn't something like WP's "Foo x" "Bar x" for displaying tags and being able to delete them
-				 maybe even from gutenberg
+				use gutenberg component to display/add/delete tags
 
 				 include socially responsible as a default category to promote it. maybe setup sample data when user first starts, as an example of how it all works
 

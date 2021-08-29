@@ -55,12 +55,17 @@ function Main() {
 			<AccountGroups />
 
 			<ErrorBoundary>
-				<Allocation type="portfolio" funds={ allFunds } targetAllocations={ userData.portfolioTargetAllocations }>
+				<Allocation
+					type="portfolio"
+					funds={ allFunds }
+					targetAllocations={ userData.portfolioTargetAllocations }
+				>
 					<h2>Total Portfolio Allocation</h2>
 				</Allocation>
 			</ErrorBoundary>
-			{/* todo want to independently set for each account, and for total portfolio
-			 can't assume will want the same allocation in each account */ }
+			{/* todo want to independently set allocation for each account, and for total portfolio
+			 can't assume will want the same allocation in each account
+			 */ }
 		</MainContext.Provider>
 	);
 }

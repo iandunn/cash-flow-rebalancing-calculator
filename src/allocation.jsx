@@ -36,8 +36,8 @@ export function Allocation( { children, type, funds = null, targetAllocations = 
 				<thead>
 					<tr>
 						<th>Tag</th>
-						<th>Target Percentage</th>
-						<th>Actual Percentage</th>
+						<th>Target</th>
+						<th>Actual</th>
 						{/* maybe include columns for total amount and target amount?
 						or is that only useful for debugging? */}
 						<th>Drift</th>
