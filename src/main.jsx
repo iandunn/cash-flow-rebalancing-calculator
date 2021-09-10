@@ -18,6 +18,58 @@ if ( import.meta.hot ) {
 	} );
 }
 
+class Main extends React.Component {
+	constructor( props ) {
+		super( props );
+
+		// todo pull from local storage or whatever is the best modern data store
+		let userData = false;
+
+		if ( ! userData ) {
+			userData = exampleData;
+			// todo don't need to do this if pass example to `createContext()` ?
+		}
+
+		this.state = { userData: userData }
+	}
+
+	render() {
+		// maybe validate the data here, like going through and parseFloat() all numbers, so don't have to do that every time touch the data later on? todo
+		const { userData } = this.state;
+
+		const allFunds = Object.values( userData.accounts ).reduce( ( accumulatedFunds, account ) => {
+			return [ ...accumulatedFunds, ...account.funds ];
+		}, [] );
+		// todo if have same symbol in multiple accounts, need to sum their parts into 1 entry here?
+		// looks fine to not sum them
+
+		// what if a symbol has tags x,y,z in one account, but only x,z in another? (or some other mismatch?)
+		// maybe force them to match by syncing when one is added
+		// maybe need to normalize all the data structures like a relational db
+		// maybe don't have to worry about that if don't sum them?
+		// but that'd still be an error, just a user input error, so should still catch it
+		// maybe just automatically update all instances of that account when they're changed for any of them
+		//      that'd be better UX too, so don't have to manually update all
+
+
+		return (
+			<MainContext.Provider value={ userData }>
+				<AccountGroups />
+
+				<ErrorBoundary>
+					<Allocation
+						type="portfolio"
+						funds={ allFunds }
+						targetAllocations={ userData.portfolioTargetAllocations }
+					>
+						<h2>Total Portfolio Allocation</h2>
+					</Allocation>
+				</ErrorBoundary>
+			</MainContext.Provider>
+		);
+	}
+}
+
 render(
 	<StrictMode>
 		<ErrorBoundary>
@@ -26,46 +78,3 @@ render(
 	</StrictMode>,
 	document.querySelector( 'main' )
 );
-
-function Main() {
-	// todo pull from local storage or whatever is the best modern data store
-	let userData = false;
-
-	if ( ! userData ) {
-		userData = exampleData;
-		// todo don't need to do this if pass example to `createContext()` ?
-	}
-
-	// maybe validate the data here, like going through and parseFloat() all numbers, so don't have to do that every time touch the data later on? todo
-
-	const allFunds = Object.values( userData.accounts ).reduce( ( accumulatedFunds, account ) => {
-		return [...accumulatedFunds, ...account.funds ];
-	}, [] );
-	// todo if have same symbol in multple accounts, need to sum their parts into 1 entry here?
-	// looks fine to not sum them
-
-	// what if a symbol has tags x,y,z in one account, but only x,z in another? (or some other mismatch?)
-	// maybe force them to match by syncing when one is added
-	// maybe need to normalize all the data structures like a relational db
-	// maybe don't have to worry about that if don't sum them?
-	// but that'd still be an error, just a user input error, so should still catch it
-
-	return (
-		<MainContext.Provider value={ userData }>
-			<AccountGroups />
-
-			<ErrorBoundary>
-				<Allocation
-					type="portfolio"
-					funds={ allFunds }
-					targetAllocations={ userData.portfolioTargetAllocations }
-				>
-					<h2>Total Portfolio Allocation</h2>
-				</Allocation>
-			</ErrorBoundary>
-			{/* todo want to independently set allocation for each account, and for total portfolio
-			 can't assume will want the same allocation in each account
-			 */ }
-		</MainContext.Provider>
-	);
-}
