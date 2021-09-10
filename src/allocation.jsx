@@ -59,7 +59,6 @@ export function Allocation( { children, type, funds = null, targetAllocations = 
 						return (
 							<TagRow
 								key={ index }
-								type={ type }
 								name={ name }
 								targetPercent={ hasTarget ? targetAllocation : '' }
 								actualPercent={ actualAllocation }
@@ -103,7 +102,7 @@ function getCurrentAllocation( funds, targetAllocation ) {
 	return currentAllocation;
 }
 
-function TagRow( { type, name, targetPercent, actualPercent, drift, difference } ) {
+function TagRow( { name, targetPercent, actualPercent, drift, difference } ) {
 	const className = drift >= DRIFT_THRESHOLD || drift <= - DRIFT_THRESHOLD ? 'drifted' : 'balanced';
 
 	return (

@@ -42,3 +42,7 @@ tr:nth-child( even ) {
 header h1 {
 	margin-top: 0;
 }
+
+main {
+	margin-top: 2em;
+}

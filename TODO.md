@@ -4,6 +4,7 @@
 - [x] Basic README
 - [x] Render components from example data
 - [ ] Allow changing inputs, adding funds/accounts
+- [ ] Save any changed data to browser storage
 - [ ] Add in-app instructions/docs
 - [ ] Get GitHub Page working - maybe convert to HTM instead of dealing w/ build tools. Still want HMR as addon, though.
 
