@@ -22,3 +22,8 @@
 	margin-right: 5px;
 	/*	todo wtf why line height messed up? */
 }
+
+.fund a {
+	color: #19497c;
+	text-decoration: none;
+}

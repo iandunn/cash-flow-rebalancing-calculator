@@ -87,8 +87,13 @@ export function Funds() {
 
 function Fund( { symbol, amount, tags } ) {
 	return (
-		<tr>
-			<td>{ symbol }</td>
+		<tr className="fund">
+			<td>
+				<a href={`https://digital.fidelity.com/prgw/digital/research/quote/dashboard/summary?symbol=${symbol}`}>
+					{ symbol }
+				</a>
+				{/* todo add the typical external link icon */}
+			</td>
 
 			<td className="amount-cell">
 				<CurrencyInput
