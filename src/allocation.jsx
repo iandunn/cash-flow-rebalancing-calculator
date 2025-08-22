@@ -8,6 +8,15 @@ import './allocation.css';
 // todo maybe just make it 1% since this is cash-flow strategy?
 const DRIFT_THRESHOLD = 5;
 
+// Clear the console before each HMR, so errors don't stack up and become hidden below the fold.
+// todo this only works in this file -- https://github.com/vitejs/vite/discussions/3143
+// todo replace w/ https://github.com/vitejs/vite/discussions/3143#discussioncomment-1717076 ?
+if ( import.meta.hot ) {
+	import.meta.hot.dispose( () => {
+		console.clear();
+	} );
+}
+
 export function Allocation( { children, type, funds = null, targetAllocations = null } ) {
 	if ( 'account' === type && null === targetAllocations && null === funds ) {
 		( { funds, targetAllocations } = useContext( AccountContext ) );
