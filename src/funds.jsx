@@ -4,7 +4,7 @@ import { AccountContext, currencyFormatter } from './utilities.jsx';
 import './funds.css';
 
 export function Funds() {
-	const { cash, funds } = useContext( AccountContext );
+	const { account : { cash, funds } } = useContext( AccountContext );
 	let totalWithoutCash = 0;
 
 	return (
@@ -36,6 +36,7 @@ export function Funds() {
 								value={ 500 }
 								size="7"
 								onValueChange={ ( value, name ) => value }
+								// todo is ^ working? why was it added? oh maybe just to handle errors until make dynamic?
 							/>
 						</td>
 

@@ -1,5 +1,5 @@
 import React, { useContext }                 from 'react';
-import { AccountContext, currencyFormatter } from './utilities.jsx';
+import { MainContext, AccountContext, currencyFormatter } from './utilities.jsx';
 import './allocation.css';
 
 // The percentage above which a portfolio is significantly out of balance
@@ -18,8 +18,10 @@ if ( import.meta.hot ) {
 }
 
 export function Allocation( { children, type, funds = null, targetAllocations = null } ) {
+	let updateAccount, account;//shouldnt need this, smell of an error?
+
 	if ( 'account' === type && null === targetAllocations && null === funds ) {
-		( { funds, targetAllocations } = useContext( AccountContext ) );
+		( { account : { funds, targetAllocations }, updateAccount } = useContext( AccountContext ) );
 	}
 
 	const currentAllocation = getCurrentAllocation( funds, targetAllocations );
@@ -73,8 +75,14 @@ export function Allocation( { children, type, funds = null, targetAllocations = 
 								actualPercent={ actualAllocation }
 								drift={ drift }
 								difference={ difference }
-							/>
-						);
+								updateAllocationTarget={ ( name, allocation ) => updateAccount( { targetAllocations: { name: allocation } } ) }
+								/>
+							);
+
+							{/*
+							// this isnn't very  good for a low level thing like this to have to know about the structure of higher level things
+							should maybe just be accountContext.updateTargetAllocation( name, allocation ) ?
+							*/}
 					} ) }
 				</tbody>
 			</table>
@@ -111,7 +119,8 @@ function getCurrentAllocation( funds, targetAllocation ) {
 	return currentAllocation;
 }
 
-function TagRow( { name, targetPercent, actualPercent, drift, difference } ) {
+function TagRow( { name, targetPercent, actualPercent, drift, difference, updateAllocationTarget } ) {
+	//const { setState } = useContext( MainContext );
 	const className = drift >= DRIFT_THRESHOLD || drift <= - DRIFT_THRESHOLD ? 'drifted' : 'balanced';
 
 	return (
@@ -123,7 +132,28 @@ function TagRow( { name, targetPercent, actualPercent, drift, difference } ) {
 					className="target-allocation"
 					type="number"
 					value={ targetPercent }
-					onChange={ value => value }
+					onChange={ value => updateAllocationTarget( name, value ) }
+						// setState( { userData: {} } ) }
+					// todo working (i think), but doesn't feel good that this simple child func would need to have all of userData
+						// whats a better way of updating a nested property inside an object inside state?
+						// maybe pass in an account ID. this already knows the fund name (which is a unique id)
+							// account name can be used instead of id, just need to enforce that it's unique
+							// could pull from account context instead of having to pass in as prop
+						// then it could be like updatefund( accountId, fundName, targetAllocation ) or something?
+
+					// todo doesn't work yet b/c "value" would just override the entire state
+					// need to do something like userData.accounts[ currentAccount ][ fund ].target = value
+					// need to convert example datae to associative array, so can have direct access to it?
+					// then can reference by account name/slug/id
+
+					// maybe accountcontext should have an update command, so we update the value of accountcontext, and that updates ths main state?
+					// that's adding an extra abstraction layer though
+					// the parent could pass in the onupdate, or maybe even accountcontext.onupdateallocatino set by high level component somehow?
+					// that seems like best, even though it kinda is adding layer of abstractio
+
+
+					// add useCallback here and other react codebases?
+					// https://dmitripavlutin.com/dont-overuse-react-usecallback/
 					min={ 0 }
 					size={ 4 }
 				/>

@@ -38,6 +38,9 @@
 - [ ] Get GitHub Page working - maybe convert to HTM instead of dealing w/ build tools. Still want HMR as addon, though.
 - [ ] clean up todo comments in code, move to this file if not a quick thing to do.
 
+- [ ] get eslint working when save
+
+
 
 # Future - High Impact
 

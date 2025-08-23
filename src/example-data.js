@@ -84,11 +84,15 @@ export const exampleData = {
 			],
 
 			'targetAllocations' : {
-				'domestic'             : 100,
+				'domestic'             : 95,
+				'international'        : 5,
+					// todo ^ should show up in account allocation table, even if there aren't any funds that are tagged w/ it
 				'stock'                : 85,
 				'bond'                 : 15
 				// todo make this different than the roth/total allocation - is hsa realistic example of that?
 				//  if not rename to whatever is
+
+				// todo this does
 			}
 		}
 	],
